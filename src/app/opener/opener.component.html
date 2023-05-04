@@ -1,0 +1,10 @@
+<div class="h-full flex flex-col justify-center items-center">
+    <img height="64" width="64" src="/assets/images/logo.png">
+    <span class="text-xl font-bold">VioLink</span>
+    <span class="pt-8">Your full URL is:</span>
+    <p class="text-xl">{{this.url.value.url}}</p>
+    <button (click)="openURL()" type="button"
+        class="bg-gradient-to-b from-sky-500 to-blue-700 mt-6 mb-6 hover:bg-indigo-700 text-white py-2 px-4 rounded hover:scale-105 duration-300 hover:shadow-md">Open
+        Link
+    </button>
+</div>

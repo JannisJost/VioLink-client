@@ -1,0 +1,37 @@
+<div class="flex flex-col w-full h-full justify-center items-center">
+    <div class="w-4/12 flex flex-col gap-1 items-center rounded-xl bg-gray-600 pt-6 pb-6 shadow-lg">
+        <img height="64" width="64" src="/assets/images/logo.png">
+        <span class="text-xl font-bold">VioLink</span>
+        <div *ngIf="generatedUrl.value.length <= 0; else generated_link">
+            <form [formGroup]="categorysaveform" #savestudent (ngSubmit)="getShortUrl()">
+                <div class="form-group">
+                    <label for="name" class="font-bold">Long link:</label>
+                    <input type="text" placeholder="Your Looong Link"
+                        class="peer h-10 w-full border-b border-indigo-500 border-t-transparent bg-transparent outline-none"
+                        formControlName="category_name" data-toggle="tooltip" data-placement="right" title="Enter Link">
+                    <div class="text-red-400" *ngIf="(CategoryName && CategoryName.touched) && (CategoryName.invalid)"
+                        style="margin-top: 5px;">
+                        <span *ngIf="(CategoryName.errors && CategoryName.errors['required'])">Please provide a
+                            link</span>
+                    </div>
+                </div>
+                <div class="w-full flex flex-row justify-end">
+                    <button type="submit"
+                        class="bg-gradient-to-b from-sky-500 to-blue-700 mt-6 mb-6 hover:bg-indigo-700 text-white py-2 px-4 rounded hover:scale-105 duration-300 hover:shadow-md">Shorten
+                    </button>
+                </div>
+            </form>
+        </div>
+        <ng-template #generated_link>
+            <div>Your generated link: </div>
+            <span class="font-bold">{{this.generatedUrl.value}}</span>
+            <button type="button" (click)="copyToClipboard()"
+                class="bg-gradient-to-b from-sky-500 to-blue-700 mt-6 mb-6 hover:bg-indigo-700 text-white py-2 px-4 rounded hover:scale-105 duration-300 hover:shadow-md">
+                {{hasCopied.value ? "Copied":"Copy
+                to
+                clipboard"}}
+
+            </button>
+        </ng-template>
+    </div>
+</div>
